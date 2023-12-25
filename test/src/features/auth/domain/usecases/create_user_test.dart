@@ -9,7 +9,10 @@ import 'auth_repository.mock.dart';
 void main() {
   late AuthenticationRepository mockAuthenticationRepository;
   late CreateUser createUser;
-
+  const message = 'Unknown error occoured';
+  const statusCode = 500;
+  const serverException = ServerException(message, statusCode: statusCode);
+  const serverFailure = ServerFailure(serverException);
   setUp(() {
     mockAuthenticationRepository = MockAuthenticationRepository();
     createUser = CreateUser(mockAuthenticationRepository);
@@ -18,8 +21,8 @@ void main() {
   test('should call createUser with correct parameters on repository',
       () async {
     // Arrange
-    final params = CreateUserParams(
-      createdAt: DateTime.now(),
+    const params = CreateUserParams(
+      createdAt: "2023-12-22T16:44:25.355Z",
       name: 'John Doe',
       avatar: 'https://example.com/avatar.png',
     );
@@ -45,8 +48,8 @@ void main() {
   test('should return Right(null) when repository call is successful',
       () async {
     // Arrange
-    final params = CreateUserParams(
-      createdAt: DateTime.now(),
+    const params = CreateUserParams(
+      createdAt: "2023-12-22T16:44:25.355Z",
       name: 'John Doe',
       avatar: 'https://example.com/avatar.png',
     );
@@ -65,24 +68,22 @@ void main() {
 
   test('should return Left when repository call fails', () async {
     // Arrange
-    final params = CreateUserParams(
-      createdAt: DateTime.now(),
+    const params = CreateUserParams(
+      createdAt: "2023-12-22T16:44:25.355Z",
       name: 'John Doe',
       avatar: 'https://example.com/avatar.png',
     );
-    const failure =
-        ServerFailure('404', 404); 
     when(() => mockAuthenticationRepository.createUser(
           createdAt: any(named: 'createdAt'),
           name: any(named: 'name'),
           avatar: any(named: 'avatar'),
-        )).thenAnswer((_) async => const Left(failure));
+        )).thenAnswer(((_) async => const Left(serverFailure)));
 
     // Act
     final result = await createUser(params);
 
     // Assert
-    expect(result, const Left(failure));
+    expect(result, const Left(serverFailure));
     verify(() => mockAuthenticationRepository.createUser(
           createdAt: params.createdAt,
           name: params.name,

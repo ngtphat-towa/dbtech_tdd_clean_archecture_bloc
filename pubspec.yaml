@@ -22,6 +22,7 @@ dependencies:
   freezed_annotation: ^2.4.1 # Code generation for immutable classes
   json_annotation: ^4.8.1 # Code generation for serialization/deserialization
   cached_network_image: ^3.3.0 # Efficiently caches images from the network
+  internet_connection_checker: ^1.0.0+1
 
 dev_dependencies:
   flutter_test:
@@ -33,7 +34,7 @@ dev_dependencies:
   analyzer: ^6.2.0 # Static analysis for Dart code
   hive_generator: ^2.0.1
   mocktail: ^1.0.2
-
+  logger: ^2.0.2+1
 flutter:
   uses-material-design: true
 
