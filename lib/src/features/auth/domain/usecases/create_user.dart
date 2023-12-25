@@ -18,7 +18,7 @@ class CreateUser implements UseCaseWithParams<void, CreateUserParams> {
 }
 
 class CreateUserParams extends Equatable {
-  final DateTime createdAt;
+  final String createdAt;
   final String name;
   final String avatar;
 
@@ -29,7 +29,7 @@ class CreateUserParams extends Equatable {
   });
 
   CreateUserParams copyWith({
-    DateTime? createdAt,
+    String? createdAt,
     String? name,
     String? avatar,
     String? id,
