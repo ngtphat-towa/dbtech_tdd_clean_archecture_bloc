@@ -16,25 +16,26 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Failure {
+  Object get exception => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String message, int statusCode) serverFailure,
-    required TResult Function(String errorMessage) cacheFailure,
-    required TResult Function() connectionFailure,
+    required TResult Function(ServerException exception) serverFailure,
+    required TResult Function(CacheException exception) cacheFailure,
+    required TResult Function(ConnectionException exception) connectionFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String message, int statusCode)? serverFailure,
-    TResult? Function(String errorMessage)? cacheFailure,
-    TResult? Function()? connectionFailure,
+    TResult? Function(ServerException exception)? serverFailure,
+    TResult? Function(CacheException exception)? cacheFailure,
+    TResult? Function(ConnectionException exception)? connectionFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message, int statusCode)? serverFailure,
-    TResult Function(String errorMessage)? cacheFailure,
-    TResult Function()? connectionFailure,
+    TResult Function(ServerException exception)? serverFailure,
+    TResult Function(CacheException exception)? cacheFailure,
+    TResult Function(ConnectionException exception)? connectionFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -85,7 +86,7 @@ abstract class _$$ServerFailureImplCopyWith<$Res> {
           _$ServerFailureImpl value, $Res Function(_$ServerFailureImpl) then) =
       __$$ServerFailureImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String message, int statusCode});
+  $Res call({ServerException exception});
 }
 
 /// @nodoc
@@ -99,18 +100,13 @@ class __$$ServerFailureImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = null,
-    Object? statusCode = null,
+    Object? exception = null,
   }) {
     return _then(_$ServerFailureImpl(
-      null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-      null == statusCode
-          ? _value.statusCode
-          : statusCode // ignore: cast_nullable_to_non_nullable
-              as int,
+      null == exception
+          ? _value.exception
+          : exception // ignore: cast_nullable_to_non_nullable
+              as ServerException,
     ));
   }
 }
@@ -118,16 +114,14 @@ class __$$ServerFailureImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ServerFailureImpl implements ServerFailure {
-  const _$ServerFailureImpl(this.message, this.statusCode);
+  const _$ServerFailureImpl(this.exception);
 
   @override
-  final String message;
-  @override
-  final int statusCode;
+  final ServerException exception;
 
   @override
   String toString() {
-    return 'Failure.serverFailure(message: $message, statusCode: $statusCode)';
+    return 'Failure.serverFailure(exception: $exception)';
   }
 
   @override
@@ -135,13 +129,12 @@ class _$ServerFailureImpl implements ServerFailure {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ServerFailureImpl &&
-            (identical(other.message, message) || other.message == message) &&
-            (identical(other.statusCode, statusCode) ||
-                other.statusCode == statusCode));
+            (identical(other.exception, exception) ||
+                other.exception == exception));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message, statusCode);
+  int get hashCode => Object.hash(runtimeType, exception);
 
   @JsonKey(ignore: true)
   @override
@@ -152,33 +145,33 @@ class _$ServerFailureImpl implements ServerFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String message, int statusCode) serverFailure,
-    required TResult Function(String errorMessage) cacheFailure,
-    required TResult Function() connectionFailure,
+    required TResult Function(ServerException exception) serverFailure,
+    required TResult Function(CacheException exception) cacheFailure,
+    required TResult Function(ConnectionException exception) connectionFailure,
   }) {
-    return serverFailure(message, statusCode);
+    return serverFailure(exception);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String message, int statusCode)? serverFailure,
-    TResult? Function(String errorMessage)? cacheFailure,
-    TResult? Function()? connectionFailure,
+    TResult? Function(ServerException exception)? serverFailure,
+    TResult? Function(CacheException exception)? cacheFailure,
+    TResult? Function(ConnectionException exception)? connectionFailure,
   }) {
-    return serverFailure?.call(message, statusCode);
+    return serverFailure?.call(exception);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message, int statusCode)? serverFailure,
-    TResult Function(String errorMessage)? cacheFailure,
-    TResult Function()? connectionFailure,
+    TResult Function(ServerException exception)? serverFailure,
+    TResult Function(CacheException exception)? cacheFailure,
+    TResult Function(ConnectionException exception)? connectionFailure,
     required TResult orElse(),
   }) {
     if (serverFailure != null) {
-      return serverFailure(message, statusCode);
+      return serverFailure(exception);
     }
     return orElse();
   }
@@ -219,11 +212,11 @@ class _$ServerFailureImpl implements ServerFailure {
 }
 
 abstract class ServerFailure implements Failure {
-  const factory ServerFailure(final String message, final int statusCode) =
+  const factory ServerFailure(final ServerException exception) =
       _$ServerFailureImpl;
 
-  String get message;
-  int get statusCode;
+  @override
+  ServerException get exception;
   @JsonKey(ignore: true)
   _$$ServerFailureImplCopyWith<_$ServerFailureImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -235,7 +228,7 @@ abstract class _$$CacheFailureImplCopyWith<$Res> {
           _$CacheFailureImpl value, $Res Function(_$CacheFailureImpl) then) =
       __$$CacheFailureImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String errorMessage});
+  $Res call({CacheException exception});
 }
 
 /// @nodoc
@@ -249,13 +242,13 @@ class __$$CacheFailureImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? errorMessage = null,
+    Object? exception = null,
   }) {
     return _then(_$CacheFailureImpl(
-      null == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
+      null == exception
+          ? _value.exception
+          : exception // ignore: cast_nullable_to_non_nullable
+              as CacheException,
     ));
   }
 }
@@ -263,14 +256,14 @@ class __$$CacheFailureImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CacheFailureImpl implements CacheFailure {
-  const _$CacheFailureImpl(this.errorMessage);
+  const _$CacheFailureImpl(this.exception);
 
   @override
-  final String errorMessage;
+  final CacheException exception;
 
   @override
   String toString() {
-    return 'Failure.cacheFailure(errorMessage: $errorMessage)';
+    return 'Failure.cacheFailure(exception: $exception)';
   }
 
   @override
@@ -278,12 +271,12 @@ class _$CacheFailureImpl implements CacheFailure {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CacheFailureImpl &&
-            (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage));
+            (identical(other.exception, exception) ||
+                other.exception == exception));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, errorMessage);
+  int get hashCode => Object.hash(runtimeType, exception);
 
   @JsonKey(ignore: true)
   @override
@@ -294,33 +287,33 @@ class _$CacheFailureImpl implements CacheFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String message, int statusCode) serverFailure,
-    required TResult Function(String errorMessage) cacheFailure,
-    required TResult Function() connectionFailure,
+    required TResult Function(ServerException exception) serverFailure,
+    required TResult Function(CacheException exception) cacheFailure,
+    required TResult Function(ConnectionException exception) connectionFailure,
   }) {
-    return cacheFailure(errorMessage);
+    return cacheFailure(exception);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String message, int statusCode)? serverFailure,
-    TResult? Function(String errorMessage)? cacheFailure,
-    TResult? Function()? connectionFailure,
+    TResult? Function(ServerException exception)? serverFailure,
+    TResult? Function(CacheException exception)? cacheFailure,
+    TResult? Function(ConnectionException exception)? connectionFailure,
   }) {
-    return cacheFailure?.call(errorMessage);
+    return cacheFailure?.call(exception);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message, int statusCode)? serverFailure,
-    TResult Function(String errorMessage)? cacheFailure,
-    TResult Function()? connectionFailure,
+    TResult Function(ServerException exception)? serverFailure,
+    TResult Function(CacheException exception)? cacheFailure,
+    TResult Function(ConnectionException exception)? connectionFailure,
     required TResult orElse(),
   }) {
     if (cacheFailure != null) {
-      return cacheFailure(errorMessage);
+      return cacheFailure(exception);
     }
     return orElse();
   }
@@ -361,9 +354,11 @@ class _$CacheFailureImpl implements CacheFailure {
 }
 
 abstract class CacheFailure implements Failure {
-  const factory CacheFailure(final String errorMessage) = _$CacheFailureImpl;
+  const factory CacheFailure(final CacheException exception) =
+      _$CacheFailureImpl;
 
-  String get errorMessage;
+  @override
+  CacheException get exception;
   @JsonKey(ignore: true)
   _$$CacheFailureImplCopyWith<_$CacheFailureImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -374,6 +369,8 @@ abstract class _$$ConnectionFailureImplCopyWith<$Res> {
   factory _$$ConnectionFailureImplCopyWith(_$ConnectionFailureImpl value,
           $Res Function(_$ConnectionFailureImpl) then) =
       __$$ConnectionFailureImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ConnectionException exception});
 }
 
 /// @nodoc
@@ -383,57 +380,83 @@ class __$$ConnectionFailureImplCopyWithImpl<$Res>
   __$$ConnectionFailureImplCopyWithImpl(_$ConnectionFailureImpl _value,
       $Res Function(_$ConnectionFailureImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? exception = null,
+  }) {
+    return _then(_$ConnectionFailureImpl(
+      null == exception
+          ? _value.exception
+          : exception // ignore: cast_nullable_to_non_nullable
+              as ConnectionException,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$ConnectionFailureImpl implements ConnectionFailure {
-  const _$ConnectionFailureImpl();
+  const _$ConnectionFailureImpl(this.exception);
+
+  @override
+  final ConnectionException exception;
 
   @override
   String toString() {
-    return 'Failure.connectionFailure()';
+    return 'Failure.connectionFailure(exception: $exception)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ConnectionFailureImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$ConnectionFailureImpl &&
+            (identical(other.exception, exception) ||
+                other.exception == exception));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, exception);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ConnectionFailureImplCopyWith<_$ConnectionFailureImpl> get copyWith =>
+      __$$ConnectionFailureImplCopyWithImpl<_$ConnectionFailureImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String message, int statusCode) serverFailure,
-    required TResult Function(String errorMessage) cacheFailure,
-    required TResult Function() connectionFailure,
+    required TResult Function(ServerException exception) serverFailure,
+    required TResult Function(CacheException exception) cacheFailure,
+    required TResult Function(ConnectionException exception) connectionFailure,
   }) {
-    return connectionFailure();
+    return connectionFailure(exception);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String message, int statusCode)? serverFailure,
-    TResult? Function(String errorMessage)? cacheFailure,
-    TResult? Function()? connectionFailure,
+    TResult? Function(ServerException exception)? serverFailure,
+    TResult? Function(CacheException exception)? cacheFailure,
+    TResult? Function(ConnectionException exception)? connectionFailure,
   }) {
-    return connectionFailure?.call();
+    return connectionFailure?.call(exception);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message, int statusCode)? serverFailure,
-    TResult Function(String errorMessage)? cacheFailure,
-    TResult Function()? connectionFailure,
+    TResult Function(ServerException exception)? serverFailure,
+    TResult Function(CacheException exception)? cacheFailure,
+    TResult Function(ConnectionException exception)? connectionFailure,
     required TResult orElse(),
   }) {
     if (connectionFailure != null) {
-      return connectionFailure();
+      return connectionFailure(exception);
     }
     return orElse();
   }
@@ -474,5 +497,12 @@ class _$ConnectionFailureImpl implements ConnectionFailure {
 }
 
 abstract class ConnectionFailure implements Failure {
-  const factory ConnectionFailure() = _$ConnectionFailureImpl;
+  const factory ConnectionFailure(final ConnectionException exception) =
+      _$ConnectionFailureImpl;
+
+  @override
+  ConnectionException get exception;
+  @JsonKey(ignore: true)
+  _$$ConnectionFailureImplCopyWith<_$ConnectionFailureImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
