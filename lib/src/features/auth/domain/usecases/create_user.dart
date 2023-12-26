@@ -3,13 +3,13 @@ import 'package:equatable/equatable.dart';
 import 'package:dbtech_tdd_clean_archecture_bloc/src/core/core.dart';
 import 'package:dbtech_tdd_clean_archecture_bloc/src/features/auth/auth.dart';
 
-class CreateUser implements UseCaseWithParams<void, CreateUserParams> {
+class CreatedUser implements UseCaseWithParams<void, CreatedUserParams> {
   final AuthenticationRepository _authenticationRepository;
 
-  CreateUser(this._authenticationRepository);
+  CreatedUser(this._authenticationRepository);
 
   @override
-  ResultVoid call(CreateUserParams params) =>
+  ResultVoid call(CreatedUserParams params) =>
       _authenticationRepository.createUser(
         name: params.name,
         avatar: params.avatar,
@@ -17,24 +17,24 @@ class CreateUser implements UseCaseWithParams<void, CreateUserParams> {
       );
 }
 
-class CreateUserParams extends Equatable {
+class CreatedUserParams extends Equatable {
   final String createdAt;
   final String name;
   final String avatar;
 
-  const CreateUserParams({
+  const CreatedUserParams({
     required this.createdAt,
     required this.name,
     required this.avatar,
   });
 
-  CreateUserParams copyWith({
+  CreatedUserParams copyWith({
     String? createdAt,
     String? name,
     String? avatar,
     String? id,
   }) {
-    return CreateUserParams(
+    return CreatedUserParams(
       createdAt: createdAt ?? this.createdAt,
       name: name ?? this.name,
       avatar: avatar ?? this.avatar,

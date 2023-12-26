@@ -23,7 +23,7 @@ void main() {
   group(
     'createUser',
     () {
-      const params = CreateUserParams(
+      const params = CreatedUserParams(
         createdAt: "2023-12-22T16:44:25.355Z",
         name: 'John Doe',
         avatar: 'https://example.com/avatar.png',

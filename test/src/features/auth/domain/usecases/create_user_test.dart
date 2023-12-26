@@ -8,20 +8,20 @@ import 'auth_repository.mock.dart';
 
 void main() {
   late AuthenticationRepository mockAuthenticationRepository;
-  late CreateUser createUser;
+  late CreatedUser createUser;
   const message = 'Unknown error occoured';
   const statusCode = 500;
   const serverException = ServerException(message, statusCode: statusCode);
   const serverFailure = ServerFailure(serverException);
   setUp(() {
     mockAuthenticationRepository = MockAuthenticationRepository();
-    createUser = CreateUser(mockAuthenticationRepository);
+    createUser = CreatedUser(mockAuthenticationRepository);
   });
 
   test('should call createUser with correct parameters on repository',
       () async {
     // Arrange
-    const params = CreateUserParams(
+    const params = CreatedUserParams(
       createdAt: "2023-12-22T16:44:25.355Z",
       name: 'John Doe',
       avatar: 'https://example.com/avatar.png',
@@ -48,7 +48,7 @@ void main() {
   test('should return Right(null) when repository call is successful',
       () async {
     // Arrange
-    const params = CreateUserParams(
+    const params = CreatedUserParams(
       createdAt: "2023-12-22T16:44:25.355Z",
       name: 'John Doe',
       avatar: 'https://example.com/avatar.png',
@@ -68,7 +68,7 @@ void main() {
 
   test('should return Left when repository call fails', () async {
     // Arrange
-    const params = CreateUserParams(
+    const params = CreatedUserParams(
       createdAt: "2023-12-22T16:44:25.355Z",
       name: 'John Doe',
       avatar: 'https://example.com/avatar.png',
