@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:dbtech_tdd_clean_archecture_bloc/src/core/core.dart';
-import 'package:dbtech_tdd_clean_archecture_bloc/src/core/utils/contants.dart';
-import 'package:dbtech_tdd_clean_archecture_bloc/src/features/auth/auth.dart';
 import 'package:http/http.dart' as http;
+
+import 'package:dbtech_tdd_clean_archecture_bloc/src/core/core.dart';
+import 'package:dbtech_tdd_clean_archecture_bloc/src/features/auth/auth.dart';
 
 abstract class AuthenticationRemoteDataSource {
   Future<void> createUser({

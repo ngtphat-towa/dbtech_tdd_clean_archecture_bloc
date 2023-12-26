@@ -25,7 +25,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
       );
       return Right(result);
     } on ServerException catch (e) {
-      return Left(ServerFailure(e));
+      return Left(ServerFailure.fromException(e));
     }
   }
 
@@ -36,7 +36,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
       final result = await _remoteDataSource.getUsers();
       return Right(result);
     } on ServerException catch (e) {
-      return Left(ServerFailure(e));
+      return Left(ServerFailure.fromException(e));
     }
   }
 }
