@@ -12,12 +12,7 @@ class UserEntity extends Equatable {
     required this.id,
   });
 
-  factory UserEntity.empty() => const UserEntity(
-        createdAt: '',
-        name: '',
-        avatar: '',
-        id: '',
-      );
+
 
   @override
   List<Object?> get props => [

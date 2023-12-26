@@ -10,6 +10,12 @@ class UserModel extends UserEntity {
     required super.avatar,
     required super.id,
   });
+  static UserModel get empty => const UserModel(
+        createdAt: 'empty.createAt',
+        name: 'empty.name',
+        avatar: 'empty.avatar',
+        id: '1',
+      );
   factory UserModel.fromMap(DataMap map) {
     return UserModel(
       createdAt: map["createdAt"] as String,
@@ -25,7 +31,7 @@ class UserModel extends UserEntity {
       UserModel.fromMap(json.decode(source) as DataMap);
 
   DataMap toMap() {
-    return <String, dynamic>{
+    return {
       'createdAt': createdAt,
       'name': name,
       'avatar': avatar,
