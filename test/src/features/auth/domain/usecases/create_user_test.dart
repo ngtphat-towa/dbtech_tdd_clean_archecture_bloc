@@ -1,8 +1,9 @@
-import 'package:dbtech_tdd_clean_archecture_bloc/src/core/errors/errors.dart';
-import 'package:dbtech_tdd_clean_archecture_bloc/src/features/auth/auth.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+
+import 'package:dbtech_tdd_clean_archecture_bloc/src/core/errors/errors.dart';
+import 'package:dbtech_tdd_clean_archecture_bloc/src/features/auth/auth.dart';
 
 import 'auth_repository.mock.dart';
 
@@ -12,7 +13,7 @@ void main() {
   const message = 'Unknown error occoured';
   const statusCode = 500;
   const serverException = ServerException(message, statusCode: statusCode);
-  const serverFailure = ServerFailure(serverException);
+  final serverFailure = ServerFailure.fromException(serverException);
   setUp(() {
     mockAuthenticationRepository = MockAuthenticationRepository();
     createUser = CreatedUser(mockAuthenticationRepository);
@@ -77,13 +78,13 @@ void main() {
           createdAt: any(named: 'createdAt'),
           name: any(named: 'name'),
           avatar: any(named: 'avatar'),
-        )).thenAnswer(((_) async => const Left(serverFailure)));
+        )).thenAnswer(((_) async => Left(serverFailure)));
 
     // Act
     final result = await createUser(params);
 
     // Assert
-    expect(result, const Left(serverFailure));
+    expect(result, Left(serverFailure));
     verify(() => mockAuthenticationRepository.createUser(
           createdAt: params.createdAt,
           name: params.name,

@@ -74,7 +74,9 @@ void main() {
           // assert
           expect(
             result,
-            equals(const Left<Failure, void>(ServerFailure(serverException))),
+            equals(
+              Left<Failure, void>(ServerFailure.fromException(serverException)),
+            ),
           );
 
           verify(() => mockAuthRemoteDataSource.createUser(
@@ -116,7 +118,9 @@ void main() {
         // assert
         expect(
           result,
-          equals(const Left<Failure, Null>(ServerFailure(serverException))),
+          equals(Left<Failure, Null>(
+            ServerFailure.fromException(serverException),
+          )),
         );
         verify(() => mockAuthRemoteDataSource.getUsers()).called(1);
         verifyNoMoreInteractions(mockAuthRemoteDataSource);
