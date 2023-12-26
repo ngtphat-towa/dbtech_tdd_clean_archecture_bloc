@@ -23,6 +23,7 @@ dependencies:
   json_annotation: ^4.8.1 # Code generation for serialization/deserialization
   cached_network_image: ^3.3.0 # Efficiently caches images from the network
   internet_connection_checker: ^1.0.0+1
+  http: ^1.1.2
 
 dev_dependencies:
   flutter_test:

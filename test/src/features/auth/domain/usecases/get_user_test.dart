@@ -9,8 +9,8 @@ import 'auth_repository.mock.dart';
 void main() {
   late AuthenticationRepository mockAuthenticationRepository;
   late GetUsers getUsers;
-  List<UserEntity> users = [
-    UserEntity.empty(),
+  final users = [
+    UserModel.empty,
     const UserEntity(
       id: '1',
       createdAt: "2023-12-22T16:44:25.355Z",
