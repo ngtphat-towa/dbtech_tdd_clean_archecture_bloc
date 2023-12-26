@@ -1,18 +1,37 @@
 import 'package:dbtech_tdd_clean_archecture_bloc/src/core/core.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:equatable/equatable.dart';
 
-part 'failures.freezed.dart';
+class Failure extends Equatable {
+  final String message;
+  final int? statusCode;
 
-@freezed
-abstract class Failure with _$Failure {
-  const factory Failure.serverFailure(
-    ServerException exception,
-  ) = ServerFailure;
-  const factory Failure.cacheFailure(
-    CacheException exception,
-  ) = CacheFailure;
-  const factory Failure.connectionFailure(
-    ConnectionException exception,
-  ) = ConnectionFailure;
+  const Failure(this.message, {this.statusCode});
+  String get errorMessage => '$statusCode'
+      'Error: $message';
+  @override
+  List<Object?> get props => [message, statusCode];
+}
 
+class ServerFailure extends Failure {
+  const ServerFailure(
+    super.message, {
+    super.statusCode,
+  });
+  ServerFailure.fromException(ServerException exception)
+      : super(
+          exception.message,
+          statusCode: exception.statusCode,
+        );
+}
+
+class CacheFailure extends Failure {
+  final CacheException exception;
+
+  CacheFailure(this.exception) : super(exception.message);
+}
+
+class ConnectionFailure extends Failure {
+  final ConnectionException exception;
+
+  ConnectionFailure(this.exception) : super(exception.toString());
 }
