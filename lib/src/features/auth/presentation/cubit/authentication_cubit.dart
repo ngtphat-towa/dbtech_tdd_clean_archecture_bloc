@@ -26,7 +26,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     final result = await _createdUser(CreatedUserParams(
       createdAt: createdAt,
       name: name,
-      avatar: name,
+      avatar: avatar,
     ));
     result.fold(
       (Failure failure) {

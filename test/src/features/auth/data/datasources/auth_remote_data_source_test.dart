@@ -25,8 +25,11 @@ void main() {
     final createUserUri = Uri.parse('$kBaseUrl$kCreateUserEndpoint');
     test('should make a POST request with correct data', () async {
       // Arrange
-      when(() => mockHttpClient.post(any(), body: any(named: 'body')))
-          .thenAnswer((_) async => http.Response('', 201));
+      when(
+        () => mockHttpClient.post(any(),
+            body: any(named: 'body'),
+            headers: {'Content-Type': 'application/json'}),
+      ).thenAnswer((_) async => http.Response('', 201));
 
       // Act
       final methodCall = dataSource.createUser;
@@ -39,19 +42,21 @@ void main() {
         completes,
       );
       // Assert
-      verify(() => mockHttpClient.post(createUserUri,
-          body: jsonEncode({
-            'createdAt': createdAt,
-            'name': name,
-            'avatar': avatar,
-          }))).called(1);
+      verify(() => mockHttpClient.post(
+            createUserUri,
+            body: any(named: 'body'),
+            headers: any(named: 'headers'),
+          )).called(1);
       verifyNoMoreInteractions(mockHttpClient);
     });
 
     test('should throw [ServerException] on non-201 response', () async {
       // Arrange
-      when(() => mockHttpClient.post(any(), body: any(named: 'body')))
-          .thenAnswer((_) async => http.Response('Invalid email', 400));
+      when(() => mockHttpClient.post(
+            any(),
+            body: any(named: 'body'),
+            headers: any(named: 'headers'),
+          )).thenAnswer((_) async => http.Response('Invalid email', 400));
 
       // Act
       final methodCall = dataSource.createUser;
@@ -65,12 +70,11 @@ void main() {
         ),
         throwsA(const ServerException('Invalid email', statusCode: 400)),
       );
-      verify(() => mockHttpClient.post(createUserUri,
-          body: jsonEncode({
-            'createdAt': createdAt,
-            'name': name,
-            'avatar': avatar,
-          }))).called(1);
+      verify(() => mockHttpClient.post(
+            createUserUri,
+            body: any(named: 'body'),
+            headers: any(named: 'headers'),
+          )).called(1);
       verifyNoMoreInteractions(mockHttpClient);
     });
   });

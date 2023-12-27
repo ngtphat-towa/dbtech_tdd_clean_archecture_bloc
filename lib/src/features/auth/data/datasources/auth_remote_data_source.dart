@@ -42,6 +42,7 @@ class AuthenticationRemoteDataSourceImpl
           'name': name,
           'avatar': avatar,
         }),
+        headers: {'Content-Type': 'application/json'},
       );
 
       if (response.statusCode == 201) {

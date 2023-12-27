@@ -64,7 +64,13 @@ void main() {
         UserCreated(),
       ],
       verify: (_) {
-        verify(() => mockCreatedUser(any()));
+        verify(
+          () => mockCreatedUser(CreatedUserParams(
+            createdAt: createdUserParams.createdAt,
+            name: createdUserParams.name,
+            avatar: createdUserParams.avatar,
+          )),
+        );
         verifyNoMoreInteractions(mockCreatedUser);
       },
     );
@@ -85,7 +91,13 @@ void main() {
         AuthenticationState.error(message: serverFailure.errorMessage),
       ],
       verify: (_) {
-        verify(() => mockCreatedUser(any()));
+        verify(
+          () => mockCreatedUser(CreatedUserParams(
+            createdAt: createdUserParams.createdAt,
+            name: createdUserParams.name,
+            avatar: createdUserParams.avatar,
+          )),
+        ).called(1);
         verifyNoMoreInteractions(mockCreatedUser);
       },
     );

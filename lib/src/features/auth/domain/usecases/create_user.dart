@@ -12,8 +12,8 @@ class CreatedUser implements UseCaseWithParams<void, CreatedUserParams> {
   ResultVoid call(CreatedUserParams params) =>
       _authenticationRepository.createUser(
         name: params.name,
-        avatar: params.avatar,
         createdAt: params.createdAt,
+        avatar: params.avatar,
       );
 }
 
