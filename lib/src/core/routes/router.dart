@@ -1,12 +1,17 @@
-import 'package:dbtech_tdd_clean_archecture_bloc/src/core/commons/views/page_under_contruction.dart';
-import 'package:dbtech_tdd_clean_archecture_bloc/src/features/on_boarding/presentation/on_boarding_screen.dart';
+import 'package:dbtech_tdd_clean_archecture_bloc/src/core/commons/commons.dart';
+import 'package:dbtech_tdd_clean_archecture_bloc/src/core/services/services.dart';
+import 'package:dbtech_tdd_clean_archecture_bloc/src/features/on_boarding/on_boarding.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case OnBoardingScreen.routeName:
       return _pageBuilder(
-        (_) => const OnBoardingScreen(),
+        (_) => BlocProvider<OnBoardingCubit>(
+          create: (_) => sl<OnBoardingCubit>(),
+          child: const OnBoardingScreen(),
+        ),
         settings: settings,
       );
     default:
