@@ -30,7 +30,6 @@ class MediaRes {
   static const pageUnderConstruction =
       '$_baseLottie/page_under_construction.json';
 
-  
   static const thumbnailPlaceholder = '$_baseImage/video_placeholder.png';
   static const user = '$_baseIcon/user.png';
   static const youtube = '$_baseIcon/youtube.png';
