@@ -1,6 +1,4 @@
-import 'package:dbtech_tdd_clean_archecture_bloc/resources/resources.dart';
 import 'package:dbtech_tdd_clean_archecture_bloc/src/core/commons/commons.dart';
-
 import 'package:dbtech_tdd_clean_archecture_bloc/src/features/on_boarding/on_boarding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

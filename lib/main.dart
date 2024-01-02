@@ -1,5 +1,5 @@
-import 'package:dbtech_tdd_clean_archecture_bloc/resources/colors.dart';
-import 'package:dbtech_tdd_clean_archecture_bloc/resources/fonts.dart';
+import 'package:dbtech_tdd_clean_archecture_bloc/src/core/commons/resources/colors.dart';
+import 'package:dbtech_tdd_clean_archecture_bloc/src/core/commons/resources/fonts.dart';
 import 'package:dbtech_tdd_clean_archecture_bloc/src/core/routes/router.dart';
 import 'package:dbtech_tdd_clean_archecture_bloc/src/core/services/injection_container.dart';
 import 'package:flutter/material.dart';

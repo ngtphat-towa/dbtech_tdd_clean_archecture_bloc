@@ -1,4 +1,4 @@
-import 'package:dbtech_tdd_clean_archecture_bloc/resources/images.dart';
+import 'package:dbtech_tdd_clean_archecture_bloc/src/core/commons/resources/images.dart';
 import 'package:dbtech_tdd_clean_archecture_bloc/src/core/commons/widgets/gradient_background.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';

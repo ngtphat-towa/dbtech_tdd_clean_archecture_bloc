@@ -1,5 +1,5 @@
-import 'package:dbtech_tdd_clean_archecture_bloc/resources/colors.dart';
-import 'package:dbtech_tdd_clean_archecture_bloc/resources/fonts.dart';
+import 'package:dbtech_tdd_clean_archecture_bloc/src/core/commons/resources/colors.dart';
+import 'package:dbtech_tdd_clean_archecture_bloc/src/core/commons/resources/fonts.dart';
 import 'package:dbtech_tdd_clean_archecture_bloc/src/core/utils/context_extention.dart';
 import 'package:dbtech_tdd_clean_archecture_bloc/src/features/on_boarding/on_boarding.dart';
 
