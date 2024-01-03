@@ -1,0 +1,12 @@
+{
+  "uid": "123",
+  "email": "example@example.com",
+  "profilePic": "example.jpg",
+  "bio": "Sample bio",
+  "points": 100,
+  "fullName": "John Doe",
+  "groupIds": ["group1", "group2"],
+  "enrolledCourseIds": ["course1", "course2"],
+  "following": ["user1", "user2"],
+  "follower": ["user3", "user4"]
+}

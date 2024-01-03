@@ -1,11 +1,16 @@
+import 'package:dbtech_tdd_clean_archecture_bloc/firebase_options.dart';
 import 'package:dbtech_tdd_clean_archecture_bloc/src/core/commons/resources/colors.dart';
 import 'package:dbtech_tdd_clean_archecture_bloc/src/core/commons/resources/fonts.dart';
 import 'package:dbtech_tdd_clean_archecture_bloc/src/core/routes/router.dart';
 import 'package:dbtech_tdd_clean_archecture_bloc/src/core/services/injection_container.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await initInjection();
   runApp(const MyApp());
 }
