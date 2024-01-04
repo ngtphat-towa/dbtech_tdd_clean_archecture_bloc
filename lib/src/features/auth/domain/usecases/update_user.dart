@@ -12,28 +12,28 @@ class UpdateUser extends UsecaseWithParams<void, UpdateUserParams> {
   @override
   ResultFuture<void> call(UpdateUserParams params) =>
       _authRepository.updateUser(
-        action: params.updateUserAction,
+        action: params.action,
         userData: params.userData,
       );
 }
 
 class UpdateUserParams extends Equatable {
   const UpdateUserParams({
-    required this.updateUserAction,
+    required this.action,
     required this.userData,
   });
   const UpdateUserParams.empty()
       : this(
-          updateUserAction: UpdateUserAction.displayName,
+          action: UpdateUserAction.displayName,
           userData: '',
         );
 
-  final UpdateUserAction updateUserAction;
+  final UpdateUserAction action;
   final dynamic userData;
 
   @override
   List<Object?> get props => [
-        updateUserAction,
+        action,
         userData,
       ];
 }
