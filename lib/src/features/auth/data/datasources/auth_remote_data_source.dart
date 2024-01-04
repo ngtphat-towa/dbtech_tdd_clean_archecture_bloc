@@ -87,13 +87,13 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       // Check if the data is exits,
       // otherwise create new collection in firebase
       if (userData.exists) {
-        return LocalUserModel.fromMap(userData.data() ?? {});
+        return LocalUserModel.fromMap(userData.data()!);
       }
 
       // Convert into model
       await _setUserData(user, email);
       userData = await _getUserData(user.uid);
-      return LocalUserModel.fromMap(userData.data() ?? {});
+      return LocalUserModel.fromMap(userData.data()!);
     } on FirebaseException catch (e) {
       throw ServerException(
         message: e.message ?? 'An error occurred during sign-in',
@@ -133,7 +133,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         message: e.message ?? 'An error occurred during sign-up',
         statusCode: e.code,
       );
-    } catch (e) {
+    } catch (e, s) {
+      debugPrintStack(stackTrace: s);
       throw const ServerException(
         message: 'Unexpected error occurred during sign-up',
         statusCode: 'unexpected_error',
@@ -147,12 +148,13 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     dynamic userData,
   }) async {
     try {
+      final currentUser = _authClient.currentUser;
       switch (action) {
         case UpdateUserAction.email:
-          await _authClient.currentUser?.updateEmail(userData as String);
+          await currentUser?.updateEmail(userData as String);
           await _updateUserData({'email': userData});
         case UpdateUserAction.displayName:
-          await _authClient.currentUser?.updateDisplayName(userData as String);
+          await currentUser?.updateDisplayName(userData as String);
           await _updateUserData({'fullName': userData});
         case UpdateUserAction.profilePic:
           final ref = _dbClient
@@ -160,7 +162,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
               .child('profile_pics/${_authClient.currentUser?.uid}');
           await ref.putFile(userData as File);
           final photoURL = await ref.getDownloadURL();
-          await _authClient.currentUser?.updatePhotoURL(photoURL);
+          await currentUser?.updatePhotoURL(photoURL);
           await _updateUserData({'profilePic': photoURL});
         case UpdateUserAction.password:
           if (_authClient.currentUser == null) {
@@ -170,21 +172,26 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
             );
           }
           final newData = jsonDecode(userData as String) as DataMap;
-          await _authClient.currentUser?.reauthenticateWithCredential(
+          await currentUser?.reauthenticateWithCredential(
             EmailAuthProvider.credential(
               email: _authClient.currentUser!.email!,
               password: newData['oldPassword'] as String,
             ),
           );
-          await _authClient.currentUser
-              ?.updatePassword(newData['newPassword'] as String);
+          await currentUser?.updatePassword(newData['newPassword'] as String);
         case UpdateUserAction.bio:
           await _updateUserData({'bio': userData});
       }
     } on FirebaseException catch (e) {
       throw ServerException(message: e.message!, statusCode: e.code);
-    } catch (e) {
-      throw CacheException(message: e.toString());
+    } catch (e, s) {
+      debugPrintStack(stackTrace: s);
+      throw ServerException(
+        message: e.runtimeType == Exception
+            ? e.toString()
+            : 'Unexpected error occurred during sign-in',
+        statusCode: 'unexpected_error',
+      );
     }
   }
 
@@ -204,10 +211,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         );
   }
 
-  Future<void> _updateUserData(DataMap data) async {
-    return _cloudStoreClient
-        .collection('users')
-        .doc(_authClient.currentUser?.uid)
-        .update(data);
-  }
+  Future<void> _updateUserData(DataMap data) => _cloudStoreClient
+      .collection('users')
+      .doc(_authClient.currentUser?.uid)
+      .update(data);
 }
