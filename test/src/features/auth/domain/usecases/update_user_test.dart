@@ -26,7 +26,7 @@ void main() {
     const updateUserAction = UpdateUserAction.displayName;
     const userData = {'displayName': 'John Doe'};
     const updateUserParams = UpdateUserParams(
-      updateUserAction: updateUserAction,
+      action: updateUserAction,
       userData: userData,
     );
 
@@ -59,7 +59,7 @@ void main() {
     const updateUserAction = UpdateUserAction.displayName;
     const userData = {'displayName': 'John Doe'};
     const updateUserParams = UpdateUserParams(
-      updateUserAction: updateUserAction,
+      action: updateUserAction,
       userData: userData,
     );
     final failure = ServerFailure(
