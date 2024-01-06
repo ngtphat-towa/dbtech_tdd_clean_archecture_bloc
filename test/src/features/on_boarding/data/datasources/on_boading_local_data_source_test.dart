@@ -29,7 +29,7 @@ void main() {
       verify(
         () => mockSharedPreferences.setBool(
           kFirstTimerKey,
-          true,
+          false,
         ),
       ).called(1);
       verifyNoMoreInteractions(mockSharedPreferences);
@@ -48,7 +48,7 @@ void main() {
       verify(
         () => mockSharedPreferences.setBool(
           kFirstTimerKey,
-          true,
+          false,
         ),
       ).called(1);
       verifyNoMoreInteractions(mockSharedPreferences);

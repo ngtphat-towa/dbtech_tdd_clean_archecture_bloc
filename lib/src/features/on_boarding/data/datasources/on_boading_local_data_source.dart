@@ -15,7 +15,7 @@ class OnBoardingLocalDataSourceImpl implements OnBoardingLocalDataSource {
   @override
   Future<void> cacheFirstTimer() async {
     try {
-      await sharedPreferences.setBool(kFirstTimerKey, true);
+      await sharedPreferences.setBool(kFirstTimerKey, false);
     } catch (e) {
       throw CacheException(message: 'Error caching first timer: $e');
     }
