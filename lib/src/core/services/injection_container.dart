@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dbtech_tdd_clean_archecture_bloc/src/features/auth/auth.dart';
-import 'package:dbtech_tdd_clean_archecture_bloc/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:dbtech_tdd_clean_archecture_bloc/src/features/on_boarding/on_boarding.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';

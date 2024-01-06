@@ -1,4 +1,5 @@
 import 'package:dbtech_tdd_clean_archecture_bloc/src/core/errors/exception.dart';
+import 'package:dbtech_tdd_clean_archecture_bloc/src/core/utils/contants.dart';
 import 'package:dbtech_tdd_clean_archecture_bloc/src/features/on_boarding/data/datasources/on_boading_local_data_source.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -27,7 +28,7 @@ void main() {
       // Assert
       verify(
         () => mockSharedPreferences.setBool(
-          OnBoardingLocalDataSourceImpl.firstTimerKey,
+          kFirstTimerKey,
           true,
         ),
       ).called(1);
@@ -46,7 +47,7 @@ void main() {
       );
       verify(
         () => mockSharedPreferences.setBool(
-          OnBoardingLocalDataSourceImpl.firstTimerKey,
+          kFirstTimerKey,
           true,
         ),
       ).called(1);
@@ -66,7 +67,7 @@ void main() {
       expect(result, true);
       verify(
         () => mockSharedPreferences.getBool(
-          OnBoardingLocalDataSourceImpl.firstTimerKey,
+          kFirstTimerKey,
         ),
       ).called(1);
       verifyNoMoreInteractions(mockSharedPreferences);
@@ -84,7 +85,7 @@ void main() {
       expect(result, true);
       verify(
         () => mockSharedPreferences.getBool(
-          OnBoardingLocalDataSourceImpl.firstTimerKey,
+          kFirstTimerKey,
         ),
       ).called(1);
       verifyNoMoreInteractions(mockSharedPreferences);
@@ -102,7 +103,7 @@ void main() {
       );
       verify(
         () => mockSharedPreferences.getBool(
-          OnBoardingLocalDataSourceImpl.firstTimerKey,
+          kFirstTimerKey,
         ),
       ).called(1);
       verifyNoMoreInteractions(mockSharedPreferences);
