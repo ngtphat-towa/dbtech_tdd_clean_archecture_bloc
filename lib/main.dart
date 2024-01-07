@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         onGenerateRoute: generateRoute,
-        initialRoute: '/',
+        // initialRoute: '/sign-in',
       ),
     );
   }
