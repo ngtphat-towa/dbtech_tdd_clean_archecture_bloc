@@ -5,6 +5,7 @@ import 'package:dbtech_tdd_clean_archecture_bloc/src/core/commons/resources/font
 import 'package:dbtech_tdd_clean_archecture_bloc/src/core/routes/router.dart';
 import 'package:dbtech_tdd_clean_archecture_bloc/src/core/services/injection_container.dart';
 import 'package:dbtech_tdd_clean_archecture_bloc/src/features/dashboard/dashboard.dart';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';

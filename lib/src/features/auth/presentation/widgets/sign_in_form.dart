@@ -1,4 +1,4 @@
-import 'package:dbtech_tdd_clean_archecture_bloc/lib.dart';
+import 'package:dbtech_tdd_clean_archecture_bloc/src/core/commons/commons.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
@@ -35,7 +35,7 @@ class _SignInFormState extends State<SignInForm> {
           InputTextFeild(
             controller: widget.passwordController,
             hintText: 'Password',
-            obscureText: true,
+            obscureText: obscurePassword,
             keyboardType: TextInputType.visiblePassword,
             suffixIcon: IconButton(
               icon: Icon(
