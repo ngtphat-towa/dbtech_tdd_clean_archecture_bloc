@@ -16,7 +16,7 @@ class MediaRes {
   static const turquoisePotPlant = '$_baseVector/turquoise_pot_plant.png';
 
   /// Backgrounds
-  static const onBoardingBackground = '$_baseImage/onBoarding_background.png';
+  static const onBoardingBackground = '$_baseImage/on_boarding_background.png';
   static const authGradientBackground =
       '$_baseImage/auth_gradient_background.png';
   static const homeGradientBackground =
