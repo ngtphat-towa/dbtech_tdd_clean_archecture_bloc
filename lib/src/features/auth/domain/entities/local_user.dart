@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 
 class LocalUser extends Equatable {
@@ -41,14 +42,22 @@ class LocalUser extends Equatable {
   bool get stringify => true;
 
   @override
+  String toString() => 'LocalUser(uid: $uid, email: $email, bio: $bio, '
+      'points: $points, fullName: $fullName)';
+
+  @override
   List<Object?> get props {
     return [
       uid,
       email,
+      profilePic,
+      bio,
+      points,
+      fullName,
+      groupIds,
+      enrolledCourseIds,
+      following,
+      follower,
     ];
   }
-
-  @override
-  String toString() => 'LocalUser(uid: $uid, email: $email, bio: $bio, '
-      'points: $points, fullName: $fullName)';
 }

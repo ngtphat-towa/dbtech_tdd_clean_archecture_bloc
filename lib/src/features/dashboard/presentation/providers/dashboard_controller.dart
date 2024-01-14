@@ -1,5 +1,6 @@
 import 'package:dbtech_tdd_clean_archecture_bloc/src/core/commons/app/providers/providers.dart';
 import 'package:dbtech_tdd_clean_archecture_bloc/src/core/commons/views/views.dart';
+import 'package:dbtech_tdd_clean_archecture_bloc/src/features/profile/presentation/views/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -33,7 +34,7 @@ class DashboardController extends ChangeNotifier {
     ChangeNotifierProvider(
       create: (_) => TabNavigator(
         TabItem(
-          child: const Placeholder(child: Center(child: Text('Profile'))),
+          child: const Placeholder(child: Center(child: ProfileView())),
         ),
       ),
       child: const PersistentView(),
